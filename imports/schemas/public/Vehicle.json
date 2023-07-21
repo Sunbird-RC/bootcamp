@@ -57,9 +57,6 @@
     ],
     "attestationPolicies": [{
       "name": "vehicleRTOOfficerAttestation",
-      "additionalInput": {
-        "enrollmentNumber": {"type": "string"}
-      },
       "attestationProperties": {
         "registrationNumber": "$.registrationNumber",
         "citizenId": "$.citizenId"
