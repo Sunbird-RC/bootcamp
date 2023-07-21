@@ -1,0 +1,42 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "id": "@id",
+    "type": "@type",
+    "schema": "https://schema.org/",
+    "vac": "https://sunbird.org/credentials/certificate/v1",
+    "GradeCertificate": {
+      "@id": "vac:Certificate",
+      "@context": {
+        "@version": 1.1,
+        "certificateType": "schema:name",
+        "schoolName": "schema:name",
+        "class": "schema:name",
+        "section": "schema:name",
+        "overallGrade": "schema:name"
+      }
+    },
+    "Person": {
+      "@id": "schema:Person",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "name": "schema:name",
+        "aadharNo": "schema:name",
+        "dateOfBirth": "schema:date"
+      }
+    },
+    "Vehicle": {
+      "@id": "schema:Vehicle",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "registrationNumber": "schema:name",
+        "vehicleMake": "schema:name",
+        "vehicleModel": "schema:name",
+        "dateOfMfg": "schema:date"
+      }
+    }
+  }
+}
