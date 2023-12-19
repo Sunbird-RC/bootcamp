@@ -31,7 +31,8 @@
           "type": "string"
         },
         "dateOfBirth": {
-          "type": "date"
+          "type": "string",
+          "format": "date"
         }
       }
     }
@@ -48,10 +49,10 @@
     "indexFields": [],
     "uniqueIndexFields": [],
     "systemFields": [
-      "_osCreatedAt",
-      "_osUpdatedAt",
-      "_osCreatedBy",
-      "_osUpdatedBy",
+      "osCreatedAt",
+      "osUpdatedAt",
+      "osCreatedBy",
+      "osUpdatedBy",
       "_osAttestedData",
       "_osClaimId",
       "_osState"

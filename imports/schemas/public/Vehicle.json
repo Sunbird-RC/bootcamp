@@ -9,13 +9,19 @@
   "required": [
     "Vehicle"
   ],
-  "title":"Vehicle",
+  "title": "Vehicle",
   "definitions": {
     "Vehicle": {
       "$id": "#/properties/Vehicle",
       "type": "object",
       "title": "The Vehicle Schema",
-      "required": ["registrationNumber", "citizenId", "vehicleMake", "vehicleModel", "yearOfMfg"],
+      "required": [
+        "registrationNumber",
+        "citizenId",
+        "vehicleMake",
+        "vehicleModel",
+        "dateOfMfg"
+      ],
       "properties": {
         "registrationNumber": {
           "type": "string"
@@ -30,61 +36,79 @@
           "type": "string"
         },
         "dateOfMfg": {
-          "type": "date"
+          "type": "string",
+          "format": "date"
         }
       }
     }
   },
   "_osConfig": {
-    "osComment": ["This section contains the OpenSABER specific configuration information",
+    "osComment": [
+      "This section contains the OpenSABER specific configuration information",
       "privateFields: Optional; list of field names to be encrypted and stored in database",
       "signedFields: Optional; list of field names that must be pre-signed",
       "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, CertificatesCode) is a composite index and CertificatesName is a single column index.",
       "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
-      "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"],
+      "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+    ],
     "privateFields": [],
     "signedFields": [],
     "indexFields": [],
     "uniqueIndexFields": [],
     "systemFields": [
-      "_osCreatedAt",
-      "_osUpdatedAt",
-      "_osCreatedBy",
-      "_osUpdatedBy",
+      "osCreatedAt",
+      "osUpdatedAt",
+      "osCreatedBy",
+      "osUpdatedBy",
       "_osAttestedData",
       "_osClaimId",
       "_osState"
     ],
-    "attestationPolicies": [{
-      "name": "vehicleRTOOfficerAttestation",
-      "attestationProperties": {
-        "registrationNumber": "$.registrationNumber",
-        "citizenId": "$.citizenId"
-      },
-      "type": "AUTOMATED",
-      "attestorPlugin": "did:internal:ClaimPluginActor?entity=RTOOfficer"
-    }],
+    "attestationPolicies": [
+      {
+        "name": "vehicleRTOOfficerAttestation",
+        "attestationProperties": {
+          "registrationNumber": "$.registrationNumber",
+          "citizenId": "$.citizenId"
+        },
+        "type": "AUTOMATED",
+        "attestorPlugin": "did:internal:ClaimPluginActor?entity=RTOOfficer"
+      }
+    ],
     "autoAttestationPolicies": [],
     "ownershipAttributes": [],
     "credentialTemplate": {
-      "@context": ["https://www.w3.org/2018/credentials/v1", "https://gist.githubusercontent.com/srprasanna/b54e74a9fe44735adef67a1d6189f093/raw/9f965c8c5b6baeb70112f660fdadefe4bbc37f31/certificate-context.json"],
-      "type": ["VerifiableCredential"],
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://raw.githubusercontent.com/Sunbird-RC/bootcamp/main/imports/schemas/context/certificate-context.json"
+      ],
+      "type": [
+        "VerifiableCredential"
+      ],
       "issuanceDate": "{{_osUpdatedAt}}",
       "credentialSubject": {
         "type": "Person",
         "name": "{{citizenId}}"
       },
-      "evidence": [{
-        "type": ["Vehicle"],
-        "registrationNumber": "{{registrationNumber}}",
-        "vehicleMake": "{{vehicleMake}}",
-        "vehicleModel": "{{vehicleModel}}",
-        "dateOfMfg": "{{dateOfMfg}}"
-      }],
+      "evidence": [
+        {
+          "type": [
+            "Vehicle"
+          ],
+          "registrationNumber": "{{registrationNumber}}",
+          "vehicleMake": "{{vehicleMake}}",
+          "vehicleModel": "{{vehicleModel}}",
+          "dateOfMfg": "{{dateOfMfg}}"
+        }
+      ],
       "issuer": "did:issuer:sunbird"
     },
-    "inviteRoles": ["anonymous"],
-    "roles": ["anonymous"],
+    "inviteRoles": [
+      "anonymous"
+    ],
+    "roles": [
+      "anonymous"
+    ],
     "enableLogin": false
   }
 }
